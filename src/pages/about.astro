@@ -1,4 +1,5 @@
 ---
+import { url } from '../utils/url';
 import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import PageHero from '../components/PageHero.astro';
@@ -32,7 +33,7 @@ const timeline = [
   {
     year: '1980',
     title: 'Our story begins',
-    body: 'Frank Hare, with other local pastors in Athens, starts the Athens County Food Pantry — a collection of churches united to serve families.',
+    body: 'Frank Hare, with other local pastors in Athens, starts the Athens County Food Pantry, a collection of churches united to serve families.',
   },
   {
     year: '2019',
@@ -54,7 +55,7 @@ const timeline = [
   <PageHero
     eyebrow="About us"
     title="Neighbors helping neighbors since 1980"
-    lead="Our mission is, simply, to help our neighbors with food and support. We make it as simple and accessible as we can for our community members to get the nutrition they need — powered entirely by dedicated volunteers."
+    lead="Our mission is, simply, to help our neighbors with food and support. We make it as simple and accessible as we can for our community members to get the nutrition they need, powered entirely by dedicated volunteers."
     image={heroImg}
     imageAlt="Pantry board members meeting around a table in the pantry"
   />
@@ -104,10 +105,10 @@ const timeline = [
         </p>
         <p>
           With sharply rising food costs, we continue to provide a lifeline for the many
-          food-insecure families in our region. Read our <a href="/news">latest news</a> to find out
+          food-insecure families in our region. Read our <a href={url('/news')}>latest news</a> to find out
           more.
         </p>
-        <a class="btn" href="/support#donate"><Icon name="heart" size={18} /> Donate</a>
+        <a class="btn" href={url('/support#donate')}><Icon name="heart" size={18} /> Donate</a>
       </div>
       <div class="photo">
         <Image src={foodBox} alt="A box of groceries including pasta, rice, canned goods and dried fruit" widths={[480, 800]} sizes="(min-width: 900px) 34rem, 100vw" />
@@ -132,7 +133,7 @@ const timeline = [
         <p>
           We serve from the Athens County Department of Job &amp; Family Services building outside
           Chauncey, deliver occasionally at two other locations when needed, and reach more
-          neighbors through our <a href="/get-food#on-the-road">On the Road</a> program.
+          neighbors through our <a href={url('/get-food#on-the-road')}>On the Road</a> program.
         </p>
         <p>
           We continually evaluate how to use our donors' dollars to best meet our clients' needs. In
@@ -140,7 +141,7 @@ const timeline = [
           housing and utility costs leave more and more people underfed.
         </p>
         <p>
-          Our aim is to understand the needs of those we serve as our friends and neighbors — and to
+          Our aim is to understand the needs of those we serve as our friends and neighbors, and to
           provide a growing number of clients not only with staples, but with healthier, fresher food
           choices as well.
         </p>

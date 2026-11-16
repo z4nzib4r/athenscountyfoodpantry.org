@@ -1,13 +1,14 @@
 ---
 import { Image } from 'astro:assets';
 import type { CollectionEntry } from 'astro:content';
+import { url } from '../utils/url';
 
 interface Props {
   post: CollectionEntry<'posts'>;
 }
 const { post } = Astro.props;
 const { title, date, excerpt, cover, coverAlt, category } = post.data;
-const href = `/post/${post.id}`;
+const href = url(`/post/${post.id}`);
 ---
 
 <article class="post-card">

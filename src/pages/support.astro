@@ -1,4 +1,5 @@
 ---
+import { url } from '../utils/url';
 import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import PageHero from '../components/PageHero.astro';
@@ -73,7 +74,7 @@ const driveIdeas = [
         <h2>Give online in under a minute</h2>
         <p>
           Make a one-time or recurring donation with your credit or debit card. Donations are
-          processed securely through PayPal. A small processing fee applies — you can choose to
+          processed securely through PayPal. A small processing fee applies. You can choose to
           increase your gift to cover it, or avoid it entirely by giving by check or direct debit.
         </p>
         <div class="btn-row">
@@ -97,8 +98,8 @@ const driveIdeas = [
         <h2>Every donation counts</h2>
         <p>
           We gratefully accept donations by direct debit, check, Facebook, and Kroger Community
-          Rewards. To give through a donor-advised fund, your estate, or other assets — or with any
-          questions — please <a href={`mailto:${site.treasurerEmail}`}>contact our treasurer</a>.
+          Rewards. To give through a donor-advised fund, your estate, or other assets, or with any
+          questions, please <a href={`mailto:${site.treasurerEmail}`}>contact our treasurer</a>.
         </p>
       </div>
       <div class="grid ways">
@@ -106,10 +107,10 @@ const driveIdeas = [
           <span class="badge"><Icon name="bank" /></span>
           <h3>Direct debit</h3>
           <p>
-            Give electronically from your bank to ours. Set a monthly amount and stop any time —
+            Give electronically from your bank to ours. Set a monthly amount and stop any time,
             no processing fees.
           </p>
-          <a href="/docs/ach-donation-instructions.pdf" target="_blank" rel="noopener">ACH donation instructions (PDF) →</a>
+          <a href={url('/docs/ach-donation-instructions.pdf')} target="_blank" rel="noopener">ACH donation instructions (PDF) →</a>
         </article>
         <article class="card">
           <span class="badge"><Icon name="mail" /></span>
@@ -149,7 +150,7 @@ const driveIdeas = [
         <h2>Bring food straight to the pantry</h2>
         <p>
           Unexpired, non-perishable food donations go immediately to feeding folks in need. Drop off
-          during open hours (10am–3pm, Mon–Fri) or <a href="/contact-us">contact us</a> to arrange
+          during open hours (10am–3pm, Mon–Fri) or <a href={url('/contact-us')}>contact us</a> to arrange
           another time.
         </p>
         <div class="callout">
@@ -184,7 +185,7 @@ const driveIdeas = [
         <ul class="pills">
           {driveIdeas.map((d) => <li>{d}</li>)}
         </ul>
-        <a class="btn" href="/contact-us">Plan a food drive with us</a>
+        <a class="btn" href={url('/contact-us')}>Plan a food drive with us</a>
       </div>
     </div>
   </section>
@@ -198,7 +199,7 @@ const driveIdeas = [
           <h2>Join our all-volunteer team</h2>
           <p class="lead">
             We are 100% volunteer-driven. Send your information to <a href={`mailto:${site.email}`}>{site.email}</a> or sign up below and someone will get
-            back to you — please allow a few days for a response.
+            back to you. Please allow a few days for a response.
           </p>
         </div>
         <div class="photo">
@@ -217,7 +218,7 @@ const driveIdeas = [
           </p>
           <p>
             We provide training and shadowing with an experienced volunteer, and ask for a regular
-            commitment — like one shift a week for a few months.
+            commitment, like one shift a week for a few months.
           </p>
           <a class="btn" href={site.volunteerFormUrl} target="_blank" rel="noopener">Sign up to volunteer</a>
         </article>

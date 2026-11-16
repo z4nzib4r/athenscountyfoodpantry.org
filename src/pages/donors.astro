@@ -1,4 +1,5 @@
 ---
+import { url } from '../utils/url';
 import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import PageHero from '../components/PageHero.astro';
@@ -15,12 +16,12 @@ import heroImg from '../assets/photos/donor-collage.jpg';
   <PageHero
     eyebrow="Donors & partners"
     title="Thank you to our donors"
-    lead="Without donations both large and small, we could not do the work we do. We depend entirely on the support of our local and extended community — individuals, churches, business partners, fundraisers, and grants."
+    lead="Without donations both large and small, we could not do the work we do. We depend entirely on the support of our local and extended community: individuals, churches, business partners, fundraisers, and grants."
     image={heroImg}
     imageAlt="Collage of donors presenting checks and supporting the pantry"
   >
     <div class="btn-row">
-      <a class="btn" href="/support#donate"><Icon name="heart" size={18} /> Become a donor</a>
+      <a class="btn" href={url('/support#donate')}><Icon name="heart" size={18} /> Become a donor</a>
     </div>
   </PageHero>
 
@@ -29,7 +30,7 @@ import heroImg from '../assets/photos/donor-collage.jpg';
       <p class="lead">
         We're thankful for our individual donors, including all our friends in Louisiana,
         Cincinnati, and beyond. We especially thank <strong>Joe Burrow</strong> for shining a light on
-        hunger in SE Ohio, leading to the creation of our endowment, the <strong>Joe Burrow Hunger Relief Fund</strong> — and Will Drabold and others for starting
+        hunger in SE Ohio, leading to the creation of our endowment, the <strong>Joe Burrow Hunger Relief Fund</strong>, and Will Drabold and others for starting
         Facebook fundraisers.
       </p>
     </div>
@@ -62,8 +63,8 @@ import heroImg from '../assets/photos/donor-collage.jpg';
         admire. Note their name with your donation and we'll add them here.
       </p>
       <div class="btn-row">
-        <a class="btn btn--harvest" href="/support#donate">Make a tribute gift</a>
-        <a class="btn btn--light" href="/contact-us">Questions? Contact us</a>
+        <a class="btn btn--harvest" href={url('/support#donate')}>Make a tribute gift</a>
+        <a class="btn btn--light" href={url('/contact-us')}>Questions? Contact us</a>
       </div>
     </div>
   </section>

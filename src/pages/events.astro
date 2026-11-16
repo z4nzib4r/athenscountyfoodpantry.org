@@ -1,4 +1,5 @@
 ---
+import { url } from '../utils/url';
 import Base from '../layouts/Base.astro';
 import PageHero from '../components/PageHero.astro';
 import Icon from '../components/Icon.astro';
@@ -24,7 +25,7 @@ import { site } from '../data/site';
         </div>
         <div class="card">
           <h3><Icon name="truck" size={20} /> On the Road</h3>
-          <p>We bring food to communities like Albany, Jacksonville/Trimble and New Marshfield. <a href="/get-food#on-the-road">Learn more</a>.</p>
+          <p>We bring food to communities like Albany, Jacksonville/Trimble and New Marshfield. <a href={url('/get-food#on-the-road')}>Learn more</a>.</p>
         </div>
         <div class="card">
           <h3><Icon name="phone" size={20} /> Questions?</h3>

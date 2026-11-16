@@ -1,4 +1,5 @@
 ---
+import { url } from '../utils/url';
 import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import PageHero from '../components/PageHero.astro';
@@ -17,7 +18,7 @@ const steps = [
   },
   {
     title: 'Bring proof of address',
-    body: 'Show that you live in Southeast Ohio. We serve Athens and surrounding counties. You’ll self-certify your income — no pay stubs needed.',
+    body: 'Show that you live in Southeast Ohio. We serve Athens and surrounding counties. You’ll self-certify your income. No pay stubs needed.',
   },
   {
     title: 'Visit during open hours',
@@ -88,7 +89,7 @@ const steps = [
           <Hours />
         </div>
         <p class="note">
-          For community distribution locations, dates and the Saturday schedule, see our <a href="/events">events page</a>.
+          For community distribution locations, dates and the Saturday schedule, see our <a href={url('/events')}>events page</a>.
         </p>
       </div>
       <div class="map">
@@ -155,7 +156,7 @@ const steps = [
           The Athens County Food Pantry brings food to different locations to make pickups more
           convenient for you. Check our events page to see where we'll be next.
         </p>
-        <a class="btn" href="/events"><Icon name="calendar" size={18} /> See upcoming events</a>
+        <a class="btn" href={url('/events')}><Icon name="calendar" size={18} /> See upcoming events</a>
       </article>
     </div>
   </section>

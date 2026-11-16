@@ -43,10 +43,10 @@ Although we receive donations of food, most of the food we provide comes from th
 
 On behalf of the board, let me thank you for your support of our work in our community. Working to alleviate hunger and food insecurity has been a full time job for our volunteers and the past year has seen continued increases in the numbers that we serve.
 
-We know how important our work is, not just to distribute food but to be a friendly and caring presence. Our volunteers are just that — friendly and caring. And while that makes those we serve feel a bit better about their visit it can be hard on our volunteer team. The stories we hear, the needs that we see can take a toll but you would never know it when you see them at work.
+We know how important our work is, not just to distribute food but to be a friendly and caring presence. Our volunteers are just that: friendly and caring. And while that makes those we serve feel a bit better about their visit it can be hard on our volunteer team. The stories we hear, the needs that we see can take a toll but you would never know it when you see them at work.
 
-I am so proud of the entire team — the packers and the distribution gang — and I know you would be too. So when you read this or when you sit down to dinner, remember those great volunteers and the work they do for our mission:
+I am so proud of the entire team, the packers and the distribution gang, and I know you would be too. So when you read this or when you sit down to dinner, remember those great volunteers and the work they do for our mission:
 
 > Helping our neighbors with food and support
 
-— Karin
+Karin

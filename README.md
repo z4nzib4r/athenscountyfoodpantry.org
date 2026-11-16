@@ -9,7 +9,7 @@ Requires Node **22.23.4+** (see `.nvmrc`).
 ```sh
 nvm use
 npm install
-npm run dev      # http://localhost:4321
+npm run dev      # http://localhost:4321/athenscountyfoodpantry.org/
 npm run build    # outputs static files to dist/
 npm run preview
 ```
@@ -35,5 +35,13 @@ URLs match the old site. `/donate`, `/contact` and `/blog` redirect.
 
 ## Deploy
 
-`npm run build` produces a plain static site in `dist/` that can be hosted on Netlify,
-Cloudflare Pages, Vercel, GitHub Pages, etc.
+Pushing to `main` builds and deploys to GitHub Pages via `.github/workflows/deploy.yml`:
+https://z4nzib4r.github.io/athenscountyfoodpantry.org/
+
+The site is served under the `/athenscountyfoodpantry.org` base path (set in `astro.config.mjs`),
+so the local dev URL is `http://localhost:4321/athenscountyfoodpantry.org/`. Internal links in
+`.astro` files go through `url()` from `src/utils/url.ts`; links in Markdown posts are prefixed
+automatically.
+
+To switch to a custom domain later: set `SITE` to the domain and `BASE` to `'/'` in
+`astro.config.mjs`, add `public/CNAME`, and configure the domain in the repo's Pages settings.

@@ -7,7 +7,7 @@ coverAlt: Pantry shelves and food ready for distribution
 readingTime: 3 min read
 ---
 
-We are being stretched! This time last year we were serving an average of 19 families each day. Over the last three months, we are now averaging 31 families each day we are open. As one of the few pantries in the area that is open 5 days a week (M–F, 10–3), plus one Saturday each month, AND a local food distribution a month — we are really being put to the test.
+We are being stretched! This time last year we were serving an average of 19 families each day. Over the last three months, we are now averaging 31 families each day we are open. As one of the few pantries in the area that is open 5 days a week (M–F, 10–3), plus one Saturday each month, AND a local food distribution a month, we are really being put to the test.
 
 As an all-volunteer organization, we are stretched in three major areas:
 
