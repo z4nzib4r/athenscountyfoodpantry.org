@@ -1,5 +1,6 @@
 ---
 import { url } from '../utils/url';
+import { getImage } from 'astro:assets';
 import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
@@ -8,13 +9,17 @@ import { site } from '../data/site';
 interface Props {
   title?: string;
   description?: string;
-  image?: string;
+  image?: string | ImageMetadata;
 }
 
 const { title, description = site.description, image = '/og-image.jpg' } = Astro.props;
 const fullTitle = title ? `${title} | ${site.name}` : `${site.name} | Helping our neighbors with food and support`;
 const canonical = new URL(Astro.url.pathname, Astro.site ?? site.url);
-const ogImage = new URL(url(image), Astro.site ?? site.url);
+const imagePath =
+  typeof image === 'string'
+    ? url(image)
+    : (await getImage({ src: image, width: Math.min(1200, image.width), format: 'jpg', quality: 80 })).src;
+const ogImage = new URL(imagePath, Astro.site ?? site.url);
 
 const jsonLd = {
   '@context': 'https://schema.org',
