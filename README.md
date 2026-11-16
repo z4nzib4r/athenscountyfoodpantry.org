@@ -9,7 +9,7 @@ Requires Node **22.23.4+** (see `.nvmrc`).
 ```sh
 nvm use
 npm install
-npm run dev      # http://localhost:4321/athenscountyfoodpantry.org/
+npm run dev      # http://localhost:4321
 npm run build    # outputs static files to dist/
 npm run preview
 ```
@@ -38,10 +38,13 @@ URLs match the old site. `/donate`, `/contact` and `/blog` redirect.
 Pushing to `main` builds and deploys to GitHub Pages via `.github/workflows/deploy.yml`:
 https://z4nzib4r.github.io/athenscountyfoodpantry.org/
 
-The site is served under the `/athenscountyfoodpantry.org` base path (set in `astro.config.mjs`),
-so the local dev URL is `http://localhost:4321/athenscountyfoodpantry.org/`. Internal links in
-`.astro` files go through `url()` from `src/utils/url.ts`; links in Markdown posts are prefixed
-automatically.
+Locally the site runs at `/`. The workflow sets `SITE` and `BASE_PATH` so the Pages build lives
+under `/athenscountyfoodpantry.org/`. To reproduce the Pages build locally:
 
-To switch to a custom domain later: set `SITE` to the domain and `BASE` to `'/'` in
-`astro.config.mjs`, add `public/CNAME`, and configure the domain in the repo's Pages settings.
+```sh
+SITE=https://z4nzib4r.github.io BASE_PATH=/athenscountyfoodpantry.org npm run build
+```
+
+Internal links in `.astro` files go through `url()` from `src/utils/url.ts`; links in Markdown
+posts are prefixed automatically. For a custom domain later, remove the two env vars from the
+workflow, add `public/CNAME`, and configure the domain in the repo's Pages settings.
