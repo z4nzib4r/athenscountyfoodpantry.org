@@ -1,0 +1,74 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+interface Props {
+  eyebrow?: string;
+  title: string;
+  lead?: string;
+  image?: ImageMetadata;
+  imageAlt?: string;
+}
+
+const { eyebrow, title, lead, image, imageAlt = '' } = Astro.props;
+---
+
+<section class:list={['page-hero', { 'page-hero--image': image }]}>
+  <div class="container page-hero__inner">
+    <div class="page-hero__text">
+      {eyebrow && <span class="eyebrow">{eyebrow}</span>}
+      <h1>{title}</h1>
+      {lead && <p class="lead">{lead}</p>}
+      <slot />
+    </div>
+    {
+      image && (
+        <div class="page-hero__media photo">
+          <Image
+            src={image}
+            alt={imageAlt}
+            widths={[480, 720, 960, 1200]}
+            sizes="(min-width: 900px) 34rem, 100vw"
+            loading="eager"
+            fetchpriority="high"
+          />
+        </div>
+      )
+    }
+  </div>
+</section>
+
+<style>
+  .page-hero {
+    position: relative;
+    padding-block: clamp(3rem, 7vw, 5.5rem) clamp(2.5rem, 6vw, 4.5rem);
+    background:
+      radial-gradient(60rem 30rem at 100% -10%, var(--green-100), transparent 60%),
+      radial-gradient(40rem 20rem at -10% 110%, var(--harvest-soft), transparent 60%),
+      var(--cream);
+    overflow: hidden;
+  }
+  .page-hero__inner {
+    display: grid;
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: center;
+  }
+  @media (min-width: 900px) {
+    .page-hero--image .page-hero__inner {
+      grid-template-columns: 1.1fr 1fr;
+    }
+  }
+  .page-hero__text {
+    max-width: 44rem;
+  }
+  .page-hero h1 {
+    margin-bottom: 0.4em;
+  }
+  .page-hero .lead {
+    margin-bottom: 0;
+  }
+  .page-hero__media {
+    aspect-ratio: 4 / 3;
+    transform: rotate(1.25deg);
+  }
+</style>

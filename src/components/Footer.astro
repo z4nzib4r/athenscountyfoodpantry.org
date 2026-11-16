@@ -1,0 +1,259 @@
+---
+import Icon from './Icon.astro';
+import Hours from './Hours.astro';
+import Email from './Email.astro';
+import { nav, site } from '../data/site';
+
+const socialIcon = { Facebook: 'facebook', Instagram: 'instagram', YouTube: 'youtube' } as const;
+const year = new Date().getFullYear();
+---
+
+<section class="newsletter" aria-labelledby="newsletter-title">
+  <div class="container newsletter__inner">
+    <div>
+      <span class="eyebrow">Stay in the loop</span>
+      <h2 id="newsletter-title">Become a friend of the Food Pantry</h2>
+      <p>
+        A few updates a year on how we're fighting hunger, what it's like behind the scenes, and how
+        we're serving more families. As a thank-you, you'll get our <em
+          >“Recipes of Iconic Athens Restaurants and Chefs”</em
+        > booklet.
+      </p>
+    </div>
+    <a class="btn btn--harvest" href={site.newsletterUrl} target="_blank" rel="noopener">
+      Sign up for the newsletter
+      <Icon name="arrow" size={18} />
+    </a>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container footer__grid">
+    <div class="footer__about">
+      <p class="footer__name">{site.name}</p>
+      <p class="footer__mission">“{site.mission}”</p>
+      <p class="footer__small">
+        An all-volunteer, 501(c)(3) nonprofit serving Southeast Ohio since 1980. We are an equal
+        opportunity provider.
+      </p>
+      <a class="guidestar" href={site.guidestarUrl} target="_blank" rel="noopener">
+        <img
+          src={site.guidestarSeal}
+          alt="Candid (GuideStar) Transparency Seal"
+          width="96"
+          height="96"
+          loading="lazy"
+        />
+      </a>
+    </div>
+
+    <div>
+      <h2 class="footer__heading">Visit</h2>
+      <address>
+        <a href={site.mapsLink} target="_blank" rel="noopener" class="footer__line">
+          <Icon name="pin" size={18} />
+          <span
+            >{site.address.line1}<br />{site.address.city}, {site.address.state} {site.address.zip}</span
+          >
+        </a>
+        <a href={site.phoneHref} class="footer__line">
+          <Icon name="phone" size={18} />
+          <span>{site.phone} <small>(call or text)</small></span>
+        </a>
+        <a href={`mailto:${site.email}`} class="footer__line">
+          <Icon name="mail" size={18} />
+          <span><Email address={site.email} /></span>
+        </a>
+      </address>
+      <p class="footer__small">
+        <strong>Mailing address:</strong><br />
+        {site.name}, {site.mailing.line1}<br />
+        {site.mailing.city}, {site.mailing.state} {site.mailing.zip}
+      </p>
+    </div>
+
+    <div>
+      <h2 class="footer__heading">Hours</h2>
+      <Hours tone="dark" />
+    </div>
+
+    <div>
+      <h2 class="footer__heading">Explore</h2>
+      <ul class="footer__links">
+        <li><a href="/">Home</a></li>
+        {
+          nav.map((n) => (
+            <li>
+              <a href={n.href}>{n.label}</a>
+            </li>
+          ))
+        }
+      </ul>
+      <ul class="footer__social" aria-label="Social media">
+        {
+          site.social.map((s) => (
+            <li>
+              <a href={s.href} target="_blank" rel="noopener" aria-label={s.name}>
+                <Icon name={socialIcon[s.name]} size={20} />
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+  <div class="container footer__bottom">
+    <p>© {year} {site.name}. All rights reserved.</p>
+    <p>
+      <a href="/support#donate">Donate</a> · <a href="/support#volunteer">Volunteer</a> ·
+      <a href="/contact-us">Contact</a>
+    </p>
+  </div>
+</footer>
+
+<style>
+  .newsletter {
+    background: var(--green-100);
+    padding-block: clamp(2.5rem, 6vw, 4rem);
+  }
+  .newsletter__inner {
+    display: grid;
+    gap: 1.5rem;
+    align-items: center;
+  }
+  .newsletter h2 {
+    margin-bottom: 0.4em;
+  }
+  .newsletter p {
+    margin: 0;
+    max-width: 40rem;
+    color: var(--ink-soft);
+  }
+  @media (min-width: 860px) {
+    .newsletter__inner {
+      grid-template-columns: 1fr auto;
+      gap: 3rem;
+    }
+  }
+
+  .footer {
+    background: var(--green-900);
+    color: rgb(255 255 255 / 0.82);
+    padding-top: clamp(3rem, 7vw, 4.5rem);
+    padding-bottom: calc(1.5rem + env(safe-area-inset-bottom, 0px));
+    font-size: 0.97rem;
+  }
+  .footer a {
+    color: #fff;
+    text-decoration: none;
+  }
+  .footer a:hover {
+    text-decoration: underline;
+  }
+  .footer__grid {
+    display: grid;
+    gap: 2.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
+  }
+  @media (min-width: 1024px) {
+    .footer__grid {
+      grid-template-columns: 1.3fr 1.2fr 1.2fr 0.8fr;
+    }
+  }
+  .footer__name {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 0.35rem;
+  }
+  .footer__mission {
+    font-family: var(--font-display);
+    font-style: italic;
+    color: var(--harvest);
+    font-size: 1.1rem;
+  }
+  .footer__small {
+    font-size: 0.9rem;
+    color: rgb(255 255 255 / 0.7);
+  }
+  .footer__heading {
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--harvest);
+    margin-bottom: 1rem;
+  }
+  address {
+    font-style: normal;
+    display: grid;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+  }
+  .footer__line {
+    display: flex;
+    gap: 0.65rem;
+    align-items: flex-start;
+    overflow-wrap: break-word;
+  }
+  .footer__line :global(svg) {
+    flex: none;
+    margin-top: 0.2rem;
+    color: var(--green-200);
+  }
+  .footer__line small {
+    color: rgb(255 255 255 / 0.6);
+  }
+  .footer__links {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.5rem;
+    display: grid;
+    gap: 0.4rem;
+  }
+  .footer__social {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 0.5rem;
+  }
+  .footer__social a {
+    display: grid;
+    place-items: center;
+    width: 2.6rem;
+    height: 2.6rem;
+    border-radius: 50%;
+    background: rgb(255 255 255 / 0.1);
+    transition: background 0.15s ease;
+  }
+  .footer__social a:hover {
+    background: var(--green-600);
+  }
+  .guidestar {
+    display: inline-block;
+    margin-top: 0.5rem;
+    background: #fff;
+    border-radius: var(--radius-sm);
+    padding: 0.4rem;
+  }
+  .guidestar img {
+    width: 5.5rem;
+    height: auto;
+  }
+  .footer__bottom {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.5rem 2rem;
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgb(255 255 255 / 0.12);
+    font-size: 0.875rem;
+    color: rgb(255 255 255 / 0.6);
+  }
+  .footer__bottom p {
+    margin: 0;
+  }
+</style>

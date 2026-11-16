@@ -1,0 +1,121 @@
+---
+import { Image } from 'astro:assets';
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Icon from '../../components/Icon.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('posts');
+  return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const { title, date, excerpt, cover, coverAlt, category, tags, readingTime } = post.data;
+---
+
+<Base title={title} description={excerpt}>
+  <article>
+    <header class="post-hero">
+      <div class="container narrow">
+        <a class="back" href="/news"><span aria-hidden="true">←</span> All news</a>
+        <p class="meta">
+          <span>{category}</span>
+          <time datetime={date.toISOString()}>
+            {date.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' })}
+          </time>
+          {readingTime && <span class="dot">{readingTime}</span>}
+        </p>
+        <h1>{title}</h1>
+        <p class="lead">{excerpt}</p>
+      </div>
+    </header>
+
+    <div class="container narrow">
+      <div class="photo cover">
+        <Image src={cover} alt={coverAlt} widths={[480, 800, 1200]} sizes="(min-width: 800px) 46rem, 100vw" loading="eager" />
+      </div>
+      <div class="prose">
+        <Content />
+      </div>
+      {
+        tags.length > 0 && (
+          <ul class="tags" aria-label="Tags">
+            {tags.map((t) => <li>{t}</li>)}
+          </ul>
+        )
+      }
+      <aside class="cta card">
+        <div>
+          <h2>Help us keep shelves full</h2>
+          <p>Every dollar and every can helps a neighbor in Southeast Ohio.</p>
+        </div>
+        <a class="btn btn--harvest" href="/support#donate"><Icon name="heart" size={18} /> Donate</a>
+      </aside>
+    </div>
+  </article>
+</Base>
+
+<style>
+  .post-hero {
+    padding-block: clamp(2.5rem, 6vw, 4rem) 2rem;
+    background: radial-gradient(60rem 30rem at 100% -10%, var(--green-100), transparent 60%), var(--cream);
+  }
+  .back {
+    display: inline-block;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1rem;
+    font-size: 0.9rem;
+    color: var(--ink-soft);
+  }
+  .meta span:first-child {
+    font-weight: 700;
+    color: var(--brown-600);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .cover {
+    margin-bottom: 2.5rem;
+    background: var(--paper);
+  }
+  .tags {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 2rem 0;
+  }
+  .tags li {
+    padding: 0.3rem 0.8rem;
+    border-radius: 999px;
+    background: var(--green-100);
+    color: var(--green-800);
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+  .cta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem 2rem;
+    margin-block: 3rem var(--section-y);
+    background: var(--green-50);
+    border-color: var(--green-200);
+  }
+  .cta h2 {
+    font-size: 1.5rem;
+    margin-bottom: 0.25rem;
+  }
+  .cta p {
+    margin: 0;
+    color: var(--ink-soft);
+  }
+</style>

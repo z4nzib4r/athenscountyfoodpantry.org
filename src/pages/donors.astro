@@ -1,0 +1,114 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Icon from '../components/Icon.astro';
+import { inHonorOf, inMemoryOf } from '../data/donors';
+
+import heroImg from '../assets/photos/donor-collage.jpg';
+---
+
+<Base
+  title="Our Donors & Partners"
+  description="Thank you to the individuals, churches, businesses and organizations whose donations make the Athens County Food Pantry possible."
+>
+  <PageHero
+    eyebrow="Donors & partners"
+    title="Thank you to our donors"
+    lead="Without donations both large and small, we could not do the work we do. We depend entirely on the support of our local and extended community — individuals, churches, business partners, fundraisers, and grants."
+    image={heroImg}
+    imageAlt="Collage of donors presenting checks and supporting the pantry"
+  >
+    <div class="btn-row">
+      <a class="btn" href="/support#donate"><Icon name="heart" size={18} /> Become a donor</a>
+    </div>
+  </PageHero>
+
+  <section class="section section--white">
+    <div class="container narrow thanks">
+      <p class="lead">
+        We're thankful for our individual donors, including all our friends in Louisiana,
+        Cincinnati, and beyond. We especially thank <strong>Joe Burrow</strong> for shining a light on
+        hunger in SE Ohio, leading to the creation of our endowment, the <strong>Joe Burrow Hunger Relief Fund</strong> — and Will Drabold and others for starting
+        Facebook fundraisers.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container tributes">
+      <article class="card tribute">
+        <span class="eyebrow">In loving memory</span>
+        <h2>Donations have been made in loving memory of</h2>
+        <ul class="names">
+          {inMemoryOf.map((n) => <li>{n}</li>)}
+        </ul>
+      </article>
+      <article class="card tribute">
+        <span class="eyebrow">In honor</span>
+        <h2>Donations have been made in honor of</h2>
+        <ul class="names">
+          {inHonorOf.map((n) => <li>{n}</li>)}
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <section class="section section--green">
+    <div class="container narrow honor-cta">
+      <h2>Honor someone special</h2>
+      <p>
+        A gift to the pantry is a meaningful way to remember a loved one or celebrate someone you
+        admire. Note their name with your donation and we'll add them here.
+      </p>
+      <div class="btn-row">
+        <a class="btn btn--harvest" href="/support#donate">Make a tribute gift</a>
+        <a class="btn btn--light" href="/contact-us">Questions? Contact us</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .thanks {
+    text-align: center;
+  }
+  .thanks p {
+    margin: 0;
+  }
+  .tributes {
+    display: grid;
+    gap: 1.5rem;
+  }
+  @media (min-width: 960px) {
+    .tributes {
+      grid-template-columns: 1fr 1fr;
+      align-items: start;
+    }
+  }
+  .tribute {
+    padding: clamp(1.5rem, 4vw, 2.25rem);
+  }
+  .tribute h2 {
+    font-size: 1.5rem;
+  }
+  .names {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    columns: 2 12rem;
+    column-gap: 1.5rem;
+  }
+  .names li {
+    break-inside: avoid;
+    padding: 0.35rem 0;
+    border-bottom: 1px solid var(--line);
+    font-size: 0.97rem;
+  }
+  .honor-cta {
+    text-align: center;
+  }
+  .honor-cta .btn-row {
+    justify-content: center;
+  }
+</style>

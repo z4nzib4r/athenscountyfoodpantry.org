@@ -1,0 +1,23 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import PostCard from '../components/PostCard.astro';
+
+const posts = (await getCollection('posts')).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+);
+---
+
+<Base title="News" description="Updates, Foodgrams and year-in-review reports from the Athens County Food Pantry.">
+  <PageHero
+    eyebrow="News"
+    title="Read the ACFP blog"
+    lead="Foodgrams, yearly recaps, and stories from behind the scenes at the pantry."
+  />
+  <section class="section section--white">
+    <div class="container grid">
+      {posts.map((p) => <PostCard post={p} />)}
+    </div>
+  </section>
+</Base>

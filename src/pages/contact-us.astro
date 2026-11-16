@@ -1,0 +1,167 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Hours from '../components/Hours.astro';
+import Icon from '../components/Icon.astro';
+import Email from '../components/Email.astro';
+import { site } from '../data/site';
+
+const topics = [
+  { title: 'General questions', body: 'Getting food, hours, events, and anything else.', href: `mailto:${site.email}`, label: site.email, icon: 'mail' },
+  { title: 'Volunteering', body: 'Join a distribution shift or offer your skills.', href: site.volunteerFormUrl, label: 'Volunteer sign-up form', icon: 'hand', external: true },
+  { title: 'Donations & finance', body: 'Gifts of stock, estates, donor-advised funds, receipts.', href: `mailto:${site.treasurerEmail}`, label: site.treasurerEmail, icon: 'heart' },
+  { title: 'Food donations & drives', body: 'Arrange a drop-off or plan a food drive.', href: `mailto:${site.email}?subject=Food%20donation`, label: site.email, icon: 'basket' },
+] as const;
+---
+
+<Base
+  title="Contact Us"
+  description="Contact the Athens County Food Pantry by phone, text, or email. Find our address, mailing address, and hours."
+>
+  <PageHero
+    eyebrow="Contact us"
+    title="We'd love to hear from you"
+    lead="We're an all-volunteer organization, so it may take a bit for us to get back to you. For a quicker response, call or text us."
+  >
+    <div class="btn-row">
+      <a class="btn" href={site.phoneHref}><Icon name="phone" size={18} /> Call {site.phone}</a>
+      <a class="btn btn--outline" href={site.smsHref}>Send a text</a>
+    </div>
+  </PageHero>
+
+  <section class="section section--white">
+    <div class="container">
+      <div class="grid topics">
+        {
+          topics.map((t) => (
+            <a class="card topic" href={t.href} target={'external' in t ? '_blank' : undefined} rel={'external' in t ? 'noopener' : undefined}>
+              <span class="badge"><Icon name={t.icon} /></span>
+              <h2>{t.title}</h2>
+              <p>{t.body}</p>
+              <span class="topic__link"><span>{t.label.includes('@') ? <Email address={t.label} /> : t.label}</span> <Icon name="arrow" size={16} /></span>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container contact">
+      <div class="card details">
+        <h2>Visit &amp; mail</h2>
+        <dl>
+          <div>
+            <dt><Icon name="pin" size={18} /> Physical address</dt>
+            <dd>
+              {site.name}<br />{site.address.line1}<br />{site.address.city}, {site.address.state} {site.address.zip}
+              <br /><a href={site.mapsLink} target="_blank" rel="noopener">Get directions →</a>
+            </dd>
+          </div>
+          <div>
+            <dt><Icon name="mail" size={18} /> Mailing address</dt>
+            <dd>{site.name}<br />{site.mailing.line1}<br />{site.mailing.city}, {site.mailing.state} {site.mailing.zip}</dd>
+          </div>
+          <div>
+            <dt><Icon name="phone" size={18} /> Phone &amp; text</dt>
+            <dd><a href={site.phoneHref}>{site.phone}</a></dd>
+          </div>
+        </dl>
+        <h3>Hours</h3>
+        <Hours />
+      </div>
+      <div class="map">
+        <iframe src={site.mapEmbed} title="Map to the Athens County Food Pantry" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .topic {
+    display: flex;
+    flex-direction: column;
+    color: var(--ink);
+    text-decoration: none;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+  }
+  .topic:hover {
+    color: var(--ink);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow);
+    border-color: var(--green-200);
+  }
+  .topic h2 {
+    font-size: 1.3rem;
+    margin-bottom: 0.3rem;
+  }
+  .topic p {
+    color: var(--ink-soft);
+  }
+  .topic__link {
+    margin-top: auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-weight: 700;
+    color: var(--green-700);
+    font-size: 0.95rem;
+  }
+  .badge {
+    display: grid;
+    place-items: center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 0.9rem;
+    background: var(--green-100);
+    color: var(--green-700);
+    margin-bottom: 1rem;
+  }
+  .contact {
+    display: grid;
+    gap: 1.5rem;
+  }
+  @media (min-width: 900px) {
+    .contact {
+      grid-template-columns: 1fr 1.15fr;
+    }
+  }
+  .details {
+    padding: clamp(1.5rem, 4vw, 2.25rem);
+  }
+  .details h2 {
+    font-size: 1.6rem;
+  }
+  .details h3 {
+    margin-top: 1.75rem;
+  }
+  dl {
+    margin: 0;
+    display: grid;
+    gap: 1.25rem;
+  }
+  dt {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 700;
+    color: var(--green-800);
+    margin-bottom: 0.2rem;
+  }
+  dd {
+    margin: 0 0 0 1.6rem;
+  }
+  .map {
+    min-height: 26rem;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    background: var(--green-100);
+  }
+  .map iframe {
+    width: 100%;
+    height: 100%;
+    min-height: 26rem;
+    border: 0;
+  }
+</style>

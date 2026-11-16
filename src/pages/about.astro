@@ -1,0 +1,277 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Icon from '../components/Icon.astro';
+
+import heroImg from '../assets/photos/board-meeting.jpg';
+import howWeServe from '../assets/photos/how-we-serve.jpg';
+import foodBox from '../assets/photos/food-box.jpg';
+
+const board = [
+  { name: 'DeeDee Dransfield', role: 'President' },
+  { name: 'Jeff Frymier', role: 'Vice-President' },
+  { name: 'Kristin Hepworth', role: 'Treasurer' },
+  { name: 'Doug Debrick', role: 'Secretary' },
+  { name: 'Dave Gehlauf' },
+  { name: 'John Hauser' },
+  { name: 'Reggie Morrow' },
+  { name: 'Ashley Metcalf' },
+  { name: 'Adriane Mohlenkamp' },
+  { name: 'Lizzie Fitch' },
+];
+
+const initials = (n: string) =>
+  n
+    .split(' ')
+    .map((p) => p[0])
+    .slice(0, 2)
+    .join('');
+
+const timeline = [
+  {
+    year: '1980',
+    title: 'Our story begins',
+    body: 'Frank Hare, with other local pastors in Athens, starts the Athens County Food Pantry — a collection of churches united to serve families.',
+  },
+  {
+    year: '2019',
+    title: 'A Heisman moment',
+    body: 'In his Heisman Trophy speech, Joe Burrow speaks about food insecurity in his hometown of Athens. A Facebook fundraiser inspired by his words receives massive support.',
+  },
+  {
+    year: 'Today',
+    title: 'The Joe Burrow Hunger Relief Fund',
+    body: 'That outpouring created our endowment and let us expand our services. We still rely on continued donations from loyal friends and supporters to serve hungry families.',
+  },
+];
+---
+
+<Base
+  title="About Us"
+  description="The Athens County Food Pantry has helped neighbors with food and support since 1980. Learn about our mission, history, impact, and leadership."
+>
+  <PageHero
+    eyebrow="About us"
+    title="Neighbors helping neighbors since 1980"
+    lead="Our mission is, simply, to help our neighbors with food and support. We make it as simple and accessible as we can for our community members to get the nutrition they need — powered entirely by dedicated volunteers."
+    image={heroImg}
+    imageAlt="Pantry board members meeting around a table in the pantry"
+  />
+
+  <!-- Impact stats -->
+  <section class="stats" aria-label="Our impact">
+    <div class="container stats__grid">
+      <div><strong>1980</strong><span>Year founded</span></div>
+      <div><strong>1 in 4</strong><span>Athens County families living in poverty</span></div>
+      <div><strong>5 days</strong><span>Open every week, plus Saturdays</span></div>
+      <div><strong>100%</strong><span>Volunteer-run</span></div>
+    </div>
+  </section>
+
+  <!-- Story timeline -->
+  <section class="section section--white">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Our story &amp; growth</span>
+        <h2>Four decades of fighting hunger</h2>
+      </div>
+      <ol class="timeline">
+        {
+          timeline.map((t) => (
+            <li>
+              <span class="timeline__year">{t.year}</span>
+              <div>
+                <h3>{t.title}</h3>
+                <p>{t.body}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <!-- Impact -->
+  <section class="section">
+    <div class="container split">
+      <div>
+        <span class="eyebrow">Our impact</span>
+        <h2>A lifeline as food costs rise</h2>
+        <p class="lead">
+          Athens is one of the poorest counties in Ohio, with a poverty rate of over one in four
+          families.
+        </p>
+        <p>
+          With sharply rising food costs, we continue to provide a lifeline for the many
+          food-insecure families in our region. Read our <a href="/news">latest news</a> to find out
+          more.
+        </p>
+        <a class="btn" href="/support#donate"><Icon name="heart" size={18} /> Donate</a>
+      </div>
+      <div class="photo">
+        <Image src={foodBox} alt="A box of groceries including pasta, rice, canned goods and dried fruit" widths={[480, 800]} sizes="(min-width: 900px) 34rem, 100vw" />
+      </div>
+    </div>
+  </section>
+
+  <!-- What we do -->
+  <section class="section section--white">
+    <div class="container split">
+      <a class="infographic" href={howWeServe.src} target="_blank" rel="noopener">
+        <Image src={howWeServe} alt="Infographic: how food flows from the SE Ohio Food Bank, through the Athens County Food Pantry, to clients" widths={[400, 680]} sizes="(min-width: 900px) 28rem, 100vw" />
+      </a>
+      <div>
+        <span class="eyebrow">What we do</span>
+        <h2>Groceries for families, with dignity</h2>
+        <p>
+          We provide a three-day emergency or supplemental supply of food per household: shelf-stable
+          goods, plus fresh produce, bread, eggs, and frozen protein as available. Eligible
+          households can receive food once a month.
+        </p>
+        <p>
+          We serve from the Athens County Department of Job &amp; Family Services building outside
+          Chauncey, deliver occasionally at two other locations when needed, and reach more
+          neighbors through our <a href="/get-food#on-the-road">On the Road</a> program.
+        </p>
+        <p>
+          We continually evaluate how to use our donors' dollars to best meet our clients' needs. In
+          Athens County, unemployment and underemployment, unreliable transportation, and high
+          housing and utility costs leave more and more people underfed.
+        </p>
+        <p>
+          Our aim is to understand the needs of those we serve as our friends and neighbors — and to
+          provide a growing number of clients not only with staples, but with healthier, fresher food
+          choices as well.
+        </p>
+        <p><em>We are an equal opportunity provider.</em></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Board -->
+  <section class="section section--tint">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Leadership</span>
+        <h2>Our board</h2>
+      </div>
+      <ul class="board">
+        {
+          board.map((m) => (
+            <li class="card">
+              <span class="avatar" aria-hidden="true">{initials(m.name)}</span>
+              <span>
+                <strong>{m.name}</strong>
+                {m.role && <span class="role">{m.role}</span>}
+              </span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .stats {
+    background: var(--green-800);
+    color: #fff;
+    padding-block: 2rem;
+  }
+  .stats__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr));
+    gap: 1.5rem;
+    text-align: center;
+  }
+  .stats strong {
+    display: block;
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 2.6rem);
+    line-height: 1.1;
+    color: var(--harvest);
+  }
+  .stats span {
+    font-size: 0.95rem;
+    color: rgb(255 255 255 / 0.8);
+  }
+
+  .timeline {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 1.5rem;
+    position: relative;
+  }
+  @media (min-width: 900px) {
+    .timeline {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  .timeline li {
+    display: grid;
+    gap: 0.75rem;
+    padding: 1.5rem;
+    border-radius: var(--radius);
+    background: var(--cream);
+    border: 1px solid var(--line);
+  }
+  .timeline__year {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--green-600);
+    line-height: 1;
+  }
+  .timeline p {
+    margin: 0;
+  }
+
+  .infographic {
+    display: block;
+    max-width: 26rem;
+    justify-self: center;
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+
+  .board {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 15rem), 1fr));
+  }
+  .board li {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    padding: 1rem 1.15rem;
+  }
+  .board li > span:last-child {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.3;
+  }
+  .avatar {
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 50%;
+    background: var(--green-100);
+    color: var(--green-800);
+    font-weight: 700;
+    font-size: 0.95rem;
+  }
+  .role {
+    font-size: 0.88rem;
+    color: var(--brown-600);
+    font-weight: 600;
+  }
+</style>

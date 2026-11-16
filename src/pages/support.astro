@@ -1,0 +1,369 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Icon from '../components/Icon.astro';
+import { site } from '../data/site';
+
+import heroImg from '../assets/photos/volunteer-portrait.jpg';
+import paypalQr from '../assets/photos/paypal-qr.png';
+import groceries from '../assets/photos/donated-groceries.jpg';
+import foodDrive from '../assets/photos/food-drive.jpg';
+import collage from '../assets/photos/volunteer-collage.jpg';
+
+const staples = [
+  'Peanut butter (or other nut butters)',
+  'Jelly',
+  'Cereal (whole grain, low sugar preferred)',
+  'Granola bars',
+  'Canned fruit (in juice, not syrup)',
+  'Canned vegetables (low sodium preferred)',
+  'Condensed soups (low sodium preferred)',
+  'Chicken, beef or vegetable stock/broth',
+  'Pasta noodles (whole grains preferred)',
+  'Canned pasta / tomato sauce',
+  'Canned or boxed meals (chili, beef stew, etc.)',
+  'Boxed sides (mac & cheese, stuffing, potatoes)',
+  'Canned tuna, chicken, pork or salmon',
+  'Canned heat-and-serve pasta',
+  'Canned beans (pork & beans, kidney, black)',
+  'Dried beans, rice, quinoa or other grains',
+  'Dried fruit (raisins, prunes, etc.)',
+  'Shelf-stable milk or milk substitutes',
+];
+
+const driveIdeas = [
+  'Neighborhood food drives',
+  'Dinner parties',
+  'Scout and 4-H projects',
+  'Church groups & Sunday School classes',
+  'School class competitions',
+  'Anniversaries, in lieu of gifts',
+  'Birthday parties',
+  'Athletic teams',
+  'Employee competitions',
+  'Can castles',
+];
+---
+
+<Base
+  title="Donate & Volunteer"
+  description="Support the Athens County Food Pantry: donate online, by check, direct debit, Facebook or Kroger Community Rewards; donate food; host a food drive; or volunteer."
+>
+  <PageHero
+    eyebrow="Support the pantry"
+    title="Help your neighbors get the food they need"
+    lead="We're a 100% volunteer-run organization. Every gift of money, food, or time goes directly to feeding families in Southeast Ohio."
+    image={heroImg}
+    imageAlt="A smiling pantry volunteer standing in the food storage room"
+  >
+    <nav class="jump" aria-label="On this page">
+      <a href="#donate"><Icon name="heart" size={18} /> Donate</a>
+      <a href="#donate-food"><Icon name="basket" size={18} /> Donate food</a>
+      <a href="#food-drive"><Icon name="cart" size={18} /> Food drives</a>
+      <a href="#volunteer"><Icon name="hand" size={18} /> Volunteer</a>
+    </nav>
+  </PageHero>
+
+  <!-- Donate -->
+  <section class="section section--green" id="donate">
+    <div class="container donate">
+      <div>
+        <span class="eyebrow">Donate</span>
+        <h2>Give online in under a minute</h2>
+        <p>
+          Make a one-time or recurring donation with your credit or debit card. Donations are
+          processed securely through PayPal. A small processing fee applies — you can choose to
+          increase your gift to cover it, or avoid it entirely by giving by check or direct debit.
+        </p>
+        <div class="btn-row">
+          <a class="btn btn--harvest btn--lg" href={site.donateUrl} target="_blank" rel="noopener">
+            <Icon name="heart" size={20} /> Donate with PayPal
+          </a>
+        </div>
+      </div>
+      <div class="qr">
+        <Image src={paypalQr} alt="QR code linking to the PayPal donation page" width={144} />
+        <p>Scan to donate from your phone</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Other ways -->
+  <section class="section section--white">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Other ways to give</span>
+        <h2>Every donation counts</h2>
+        <p>
+          We gratefully accept donations by direct debit, check, Facebook, and Kroger Community
+          Rewards. To give through a donor-advised fund, your estate, or other assets — or with any
+          questions — please <a href={`mailto:${site.treasurerEmail}`}>contact our treasurer</a>.
+        </p>
+      </div>
+      <div class="grid ways">
+        <article class="card">
+          <span class="badge"><Icon name="bank" /></span>
+          <h3>Direct debit</h3>
+          <p>
+            Give electronically from your bank to ours. Set a monthly amount and stop any time —
+            no processing fees.
+          </p>
+          <a href="/docs/ach-donation-instructions.pdf" target="_blank" rel="noopener">ACH donation instructions (PDF) →</a>
+        </article>
+        <article class="card">
+          <span class="badge"><Icon name="mail" /></span>
+          <h3>Check</h3>
+          <p>Make checks payable to <strong>“Athens County Food Pantry”</strong> and mail to:</p>
+          <address>
+            Athens County Food Pantry<br />
+            c/o Treasurer<br />
+            {site.mailing.line1}<br />
+            {site.mailing.city}, {site.mailing.state} {site.mailing.zip}
+          </address>
+        </article>
+        <article class="card">
+          <span class="badge"><Icon name="facebook" /></span>
+          <h3>Facebook</h3>
+          <p>
+            Use the Donate button on our Facebook page, <a href="https://www.facebook.com/athenscountyfoodpantry/" target="_blank" rel="noopener">@athenscountyfoodpantry</a>,
+            or start a birthday fundraiser.
+          </p>
+        </article>
+        <article class="card">
+          <span class="badge"><Icon name="cart" /></span>
+          <h3>Kroger</h3>
+          <p>
+            Link your Kroger Plus card to <a href="https://www.kroger.com/i/community/community-rewards" target="_blank" rel="noopener">Kroger Community Rewards</a> and Kroger donates to us every time you shop.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Donate food -->
+  <section class="section" id="donate-food">
+    <div class="container split">
+      <div>
+        <span class="eyebrow">Donate food</span>
+        <h2>Bring food straight to the pantry</h2>
+        <p>
+          Unexpired, non-perishable food donations go immediately to feeding folks in need. Drop off
+          during open hours (10am–3pm, Mon–Fri) or <a href="/contact-us">contact us</a> to arrange
+          another time.
+        </p>
+        <div class="callout">
+          <p>
+            <strong>Tip:</strong> Pop-top cans are easiest for our clients to open. Please avoid
+            glass packaging when possible to prevent breakage.
+          </p>
+        </div>
+        <div class="photo food-photo">
+          <Image src={groceries} alt="A cart full of donated canned and boxed foods" widths={[480, 800]} sizes="(min-width: 900px) 34rem, 100vw" />
+        </div>
+      </div>
+      <div class="card staples">
+        <h3>Staple foods we need most</h3>
+        <ul class="check-list">
+          {staples.map((s) => <li>{s}</li>)}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Food drive -->
+  <section class="section section--white" id="food-drive">
+    <div class="container split split--reverse">
+      <div class="photo">
+        <Image src={foodDrive} alt="Bags and boxes of food collected during a community food drive" widths={[480, 800]} sizes="(min-width: 900px) 34rem, 100vw" />
+      </div>
+      <div>
+        <span class="eyebrow">Host a food drive</span>
+        <h2>Looking for a group project that does real good?</h2>
+        <p>Here are some ideas for food drives and fundraisers:</p>
+        <ul class="pills">
+          {driveIdeas.map((d) => <li>{d}</li>)}
+        </ul>
+        <a class="btn" href="/contact-us">Plan a food drive with us</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Volunteer -->
+  <section class="section section--tint" id="volunteer">
+    <div class="container">
+      <div class="split vol-head">
+        <div>
+          <span class="eyebrow">Volunteer</span>
+          <h2>Join our all-volunteer team</h2>
+          <p class="lead">
+            We are 100% volunteer-driven. Send your information to <a href={`mailto:${site.email}`}>{site.email}</a> or sign up below and someone will get
+            back to you — please allow a few days for a response.
+          </p>
+        </div>
+        <div class="photo">
+          <Image src={collage} alt="Collage of smiling pantry volunteers around the word YOU!" widths={[600, 1000, 1400]} sizes="(min-width: 900px) 34rem, 100vw" />
+        </div>
+      </div>
+
+      <div class="grid vol-grid">
+        <article class="card">
+          <span class="badge"><Icon name="basket" /></span>
+          <h3>Food distribution volunteer</h3>
+          <p>
+            Distribution volunteers are the “face of the food pantry.” They serve clients at the Job
+            &amp; Family Services building on Rt. 13 outside Chauncey, Mon–Fri, 10am–3pm, in
+            3-hour shifts.
+          </p>
+          <p>
+            We provide training and shadowing with an experienced volunteer, and ask for a regular
+            commitment — like one shift a week for a few months.
+          </p>
+          <a class="btn" href={site.volunteerFormUrl} target="_blank" rel="noopener">Sign up to volunteer</a>
+        </article>
+        <article class="card">
+          <span class="badge"><Icon name="star" /></span>
+          <h3>Offer your special skills</h3>
+          <p>
+            Have administrative, financial, photography, writing, or technology/web skills? We'd love
+            to talk about how you can contribute.
+          </p>
+          <a class="btn btn--outline" href={site.volunteerFormUrl} target="_blank" rel="noopener">Tell us about your skills</a>
+        </article>
+        <article class="card">
+          <span class="badge"><Icon name="users" /></span>
+          <h3>Other local organizations</h3>
+          <p>
+            Looking for one-time or short-term opportunities? The Southeastern Ohio Foodbank in
+            Logan serves as a clearinghouse and can connect you with other groups in need of help.
+          </p>
+          <a href="http://hapcap.org/volunteer" target="_blank" rel="noopener">hapcap.org/volunteer →</a>
+        </article>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .jump {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1.75rem;
+  }
+  .jump a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.55rem 1rem;
+    border-radius: 999px;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    color: var(--green-800);
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .jump a:hover {
+    border-color: var(--green-600);
+    background: var(--green-50);
+  }
+
+  .donate {
+    display: grid;
+    gap: 2rem;
+    align-items: center;
+  }
+  @media (min-width: 800px) {
+    .donate {
+      grid-template-columns: 1fr auto;
+      gap: 4rem;
+    }
+  }
+  .donate p {
+    max-width: 40rem;
+  }
+  .btn--lg {
+    min-height: 3.5rem;
+    padding-inline: 2rem;
+    font-size: 1.1rem;
+  }
+  .qr {
+    background: #fff;
+    border-radius: var(--radius);
+    padding: 1rem 1rem 0.75rem;
+    text-align: center;
+    color: var(--ink-soft);
+    font-size: 0.85rem;
+    justify-self: start;
+  }
+  .qr img {
+    margin: 0 auto 0.5rem;
+  }
+  .qr p {
+    margin: 0;
+  }
+
+  .badge {
+    display: grid;
+    place-items: center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 0.9rem;
+    background: var(--green-100);
+    color: var(--green-700);
+    margin-bottom: 1rem;
+  }
+  address {
+    font-style: normal;
+    padding: 0.75rem 1rem;
+    background: var(--green-50);
+    border-radius: var(--radius-sm);
+  }
+
+  .split {
+    align-items: start;
+  }
+  .food-photo {
+    margin-top: 1.5rem;
+    aspect-ratio: 16 / 9;
+  }
+  .staples {
+    padding: clamp(1.5rem, 4vw, 2.25rem);
+  }
+  .staples .check-list {
+    font-size: 0.98rem;
+  }
+
+  #food-drive .split {
+    align-items: center;
+  }
+  .pills {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.75rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .pills li {
+    padding: 0.4rem 0.9rem;
+    border-radius: 999px;
+    background: var(--harvest-soft);
+    color: var(--brown-800);
+    font-size: 0.95rem;
+    font-weight: 600;
+  }
+
+  .vol-head {
+    align-items: center;
+    margin-bottom: 2.5rem;
+  }
+  .vol-grid .card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .vol-grid .card > :last-child {
+    margin-top: auto;
+  }
+</style>

@@ -1,0 +1,64 @@
+---
+import { site } from '../data/site';
+interface Props {
+  tone?: 'light' | 'dark';
+}
+const { tone = 'light' } = Astro.props;
+---
+
+<dl class:list={['hours', `hours--${tone}`]}>
+  {
+    site.hours.map((h) => (
+      <div class="hours__row">
+        <dt>{h.days}</dt>
+        <dd class:list={{ closed: h.time === 'Closed' }}>{h.time}</dd>
+      </div>
+    ))
+  }
+</dl>
+<p class:list={['hours__note', `hours--${tone}`]}>{site.hoursNote}</p>
+
+<style>
+  .hours {
+    margin: 0;
+    display: grid;
+    gap: 0;
+  }
+  .hours__row {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.55rem 0;
+    border-bottom: 1px dashed var(--line);
+  }
+  .hours--dark .hours__row {
+    border-color: rgb(255 255 255 / 0.18);
+  }
+  dt {
+    font-weight: 500;
+  }
+  dd {
+    margin: 0;
+    font-weight: 700;
+    white-space: nowrap;
+    color: var(--green-800);
+  }
+  .hours--dark dd {
+    color: #fff;
+  }
+  dd.closed {
+    color: var(--ink-soft);
+    font-weight: 500;
+  }
+  .hours--dark dd.closed {
+    color: rgb(255 255 255 / 0.65);
+  }
+  .hours__note {
+    margin: 0.75rem 0 0;
+    font-size: 0.9rem;
+    color: var(--ink-soft);
+  }
+  .hours__note.hours--dark {
+    color: rgb(255 255 255 / 0.7);
+  }
+</style>

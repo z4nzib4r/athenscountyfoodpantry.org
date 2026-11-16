@@ -1,0 +1,31 @@
+export const inMemoryOf = [
+  'Bill Allen', 'Charlotte Agnone', 'Richard Bacon', 'Carolyn Blackford', 'Rev. Herbert Borchelt',
+  'Karen Burhenn', 'Andy Chonko', 'Ann Chonko', 'June Clark', 'Doris Conyers', 'James Conyers',
+  'Jim Couts', 'Robert & Hazel', 'Evelyn Cunningham', 'Donald Dayton', 'Arlene Dressel',
+  'Jame Gault', 'Janis Gault', 'Esther Goldsberry', 'Richard Grubic', 'Richard Guder',
+  'Gerald Hann', 'Kathy Hartman', 'Ruth Jones', 'Phillip Kasler', 'Shirley Kirkendall',
+  'Lauretta Klock', 'Earl Knies', 'Bill Korner', 'Mary Lou Lavelle', 'Roy Lawrence', 'Warren Lotz',
+  'Ruth Wilson Lykins', 'Marta Kay Lyons', 'Marjorie Ann Malcom', 'Tom Marx',
+  'Francis Michael McFadden', 'Lyle McGeoch', 'Lyle Andrew McGeoch', 'Jordan Mike',
+  'Daniel Morton', 'Janice Norris', 'Betty Ransom', 'Kevin Riordan', 'Sidney Rosenfield',
+  'Bill Scott', 'Sara Scott', 'George Sherman', 'Tom Sheskey', 'Robert Shostack', 'Sandy Smart',
+  'Mary Nell Stahl', 'Anne and Guido Stempel', 'Crista Stretenovic', 'Matt Wible', 'Bill Wooddell',
+  'Devon Zimmerman', 'William Zimmerman',
+];
+
+export const inHonorOf = [
+  'Kira Adkins', 'Cheri Beck', 'Mark Barsamian', 'Dr. Allison Batchelor', 'John S Beekman',
+  'Michael and John Benz', 'Ian and Meg Goodwin Berger', 'Neil Bernstein', 'John and Cathy Bigger',
+  'Charlie Bird', 'Sarah Blazier', 'Bradley D. Stewart Co.', 'David M. Buchenroth',
+  'Jimmy and Robin Burrow', 'Joe Burrow', 'Cincinnati Bengals', 'Jim Cronin',
+  'Cassidy and Ally Czepczynski', 'Liam M. Davis', 'Barb Dingle', 'Jill Doose', 'Lauren Dutton',
+  'Jack Forman', 'Pr. Phillip Foster', 'Jack Frech', 'Matthew Griffin', 'Margarethe Hanson',
+  'Todd Jaeck', 'Megan Jaskenski', 'Janette Jones', 'Mrs. Kappes', 'Danny and Nancy Kasler',
+  'Jorma Kaukonen', 'Dan Kilkenny', 'Bruce Kurhe', 'Paul Mayhew', 'Todd McFarland', 'Bill Meuser',
+  'Griffin Meyer', 'Jordan Mike', 'Alan Miller', 'Leo Mohlenkamp', 'Dan Neeson', 'Dr. John Ortman',
+  'OU-HCOM personnel', 'Michael Owens', 'Barb Pfeiffer', 'Ron Polsky', 'Debbie Riccioli',
+  'Schaffner’s Drive In', 'Madeleine Scott', 'Jacob Sheehan', 'Kathy and Dean Sheehan',
+  'Margie Shelton', 'Jonathan Silbert', 'Carey Snyder', 'Margaret Soltow', 'Glann and Bonnie Tenney',
+  'Ian Vitkus', 'Anita Wdowka', 'Tom Wetmore', 'Family of J. Whitlock', 'Tess Wilhelm', 'Adam Wills',
+  'Janet and Jeff Wilson', 'Lisa Wineland', 'Cindy Winner', 'William Wooddell', 'Dana Wright',
+];

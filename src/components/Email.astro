@@ -1,0 +1,9 @@
+---
+// Renders an email address that can wrap only after the "@" on narrow screens.
+interface Props {
+  address: string;
+}
+const [user, domain] = Astro.props.address.split('@');
+---
+
+{user}@<wbr />{domain}

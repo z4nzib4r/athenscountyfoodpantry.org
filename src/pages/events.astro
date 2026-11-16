@@ -1,0 +1,75 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Icon from '../components/Icon.astro';
+import { site } from '../data/site';
+---
+
+<Base
+  title="Events"
+  description="Saturday openings, On the Road community distributions, and other events from the Athens County Food Pantry."
+>
+  <PageHero
+    eyebrow="Events"
+    title="Where we'll be next"
+    lead="Saturday openings, On the Road community food distributions, and other pantry events."
+  />
+
+  <section class="section section--white">
+    <div class="container">
+      <div class="info grid">
+        <div class="card">
+          <h3><Icon name="calendar" size={20} /> Saturday hours</h3>
+          <p>We're usually open the first Saturday of the month, 1pm – 3pm. Check the calendar for special dates.</p>
+        </div>
+        <div class="card">
+          <h3><Icon name="truck" size={20} /> On the Road</h3>
+          <p>We bring food to communities like Albany, Jacksonville/Trimble and New Marshfield. <a href="/get-food#on-the-road">Learn more</a>.</p>
+        </div>
+        <div class="card">
+          <h3><Icon name="phone" size={20} /> Questions?</h3>
+          <p>Call or text <a href={site.phoneHref}>{site.phone}</a> to confirm times before you come.</p>
+        </div>
+      </div>
+
+      <div class="calendar">
+        <iframe
+          src={site.calendarEmbed}
+          title="Athens County Food Pantry events calendar"
+          class="styled-calendar-container"
+          data-cy="calendar-embed-iframe"
+          loading="lazy"></iframe>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<script is:inline async type="module" src="https://embed.styledcalendar.com/assets/parent-window.js"></script>
+
+<style>
+  .info {
+    margin-bottom: 2rem;
+  }
+  .info h3 {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--green-800);
+  }
+  .info p {
+    margin: 0;
+    color: var(--ink-soft);
+  }
+  .calendar {
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background: var(--paper);
+    box-shadow: var(--shadow-sm);
+  }
+  .calendar iframe {
+    width: 100%;
+    min-height: 44rem;
+    border: 0;
+  }
+</style>

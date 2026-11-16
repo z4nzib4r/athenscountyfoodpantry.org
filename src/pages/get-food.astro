@@ -1,0 +1,297 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Hours from '../components/Hours.astro';
+import Icon from '../components/Icon.astro';
+import { site } from '../data/site';
+
+import heroImg from '../assets/photos/handing-box.jpg';
+import incomeGuidelines from '../assets/photos/income-guidelines.png';
+import foodbankLogo from '../assets/photos/seo-foodbank-logo.png';
+
+const steps = [
+  {
+    title: 'Check if you qualify',
+    body: 'Many families in the area qualify. Compare your household income with the USDA TEFAP guidelines below.',
+  },
+  {
+    title: 'Bring proof of address',
+    body: 'Show that you live in Southeast Ohio. We serve Athens and surrounding counties. You’ll self-certify your income — no pay stubs needed.',
+  },
+  {
+    title: 'Visit during open hours',
+    body: 'Come Monday–Friday, 10am–3pm, or on the first Saturday of the month. You can receive food once every four weeks (28 days).',
+  },
+];
+---
+
+<Base
+  title="Get Food"
+  description="How to get free groceries from the Athens County Food Pantry: hours, location, eligibility, proxies, and other food resources in Southeast Ohio."
+>
+  <PageHero
+    eyebrow="We serve neighbors like you"
+    title="Get food"
+    lead="Many families in the area qualify for nutritional support. Here's everything you need to know before your visit."
+    image={heroImg}
+    imageAlt="A volunteer hands a box of groceries to a client"
+  >
+    <div class="btn-row">
+      <a class="btn" href="#visit"><Icon name="pin" size={18} /> Hours &amp; location</a>
+      <a class="btn btn--outline" href={site.phoneHref}><Icon name="phone" size={18} /> {site.phone}</a>
+    </div>
+  </PageHero>
+
+  <!-- Steps -->
+  <section class="section section--white">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">How it works</span>
+        <h2>Three simple steps</h2>
+      </div>
+      <ol class="steps">
+        {
+          steps.map((s, i) => (
+            <li class="card step">
+              <span class="step__num">{i + 1}</span>
+              <h3>{s.title}</h3>
+              <p>{s.body}</p>
+            </li>
+          ))
+        }
+      </ol>
+      <div class="callout urgent">
+        <p>
+          <strong>Need emergency food after hours?</strong> Call or text us directly at <a href={site.phoneHref}>{site.phone}</a>.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Visit -->
+  <section class="section" id="visit">
+    <div class="container split">
+      <div>
+        <span class="eyebrow">Visit the pantry</span>
+        <h2>Where to find us</h2>
+        <p class="lead">
+          We serve from the back of the Athens County Job &amp; Family Services Center in Millfield,
+          just outside Chauncey.
+        </p>
+        <p>
+          <strong>{site.address.line1}, {site.address.city}, {site.address.state} {site.address.zip}</strong><br />
+          Look for signs from the north parking lot (nearest the dog shelter).
+        </p>
+        <div class="card">
+          <h3>Hours</h3>
+          <Hours />
+        </div>
+        <p class="note">
+          For community distribution locations, dates and the Saturday schedule, see our <a href="/events">events page</a>.
+        </p>
+      </div>
+      <div class="map">
+        <iframe src={site.mapEmbed} title="Map to the Athens County Food Pantry" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <a class="btn btn--outline map__btn" href={site.mapsLink} target="_blank" rel="noopener">
+          Open in Google Maps <Icon name="external" size={16} />
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Qualifying -->
+  <section class="section section--white" id="qualifying">
+    <div class="container split">
+      <div>
+        <span class="eyebrow">Qualifying</span>
+        <h2>Eligibility guidelines</h2>
+        <p>
+          To ensure we are able to help those most in need, we follow the eligibility guidelines set
+          by the USDA's <strong>TEFAP</strong> (The Emergency Food Assistance Program).
+        </p>
+        <ul class="check-list">
+          <li>If your household income falls below the listed threshold for your household size, you are eligible to receive food.</li>
+          <li>You'll self-certify your income and provide proof that you live in Southeast Ohio.</li>
+          <li>Our guidelines permit assistance once every four weeks (28 days).</li>
+          <li>We are an equal opportunity provider.</li>
+        </ul>
+        <div class="btn-row">
+          <a class="btn" href="https://www.odjfs.state.oh.us/forms/num/JFS04221/pdf/" target="_blank" rel="noopener">
+            <Icon name="doc" size={18} /> View the TEFAP form (PDF)
+          </a>
+        </div>
+      </div>
+      <a class="guidelines" href="https://www.odjfs.state.oh.us/forms/num/JFS04221/pdf/" target="_blank" rel="noopener">
+        <Image src={incomeGuidelines} alt="TEFAP income eligibility guidelines table by household size" widths={[400, 700, 978]} sizes="(min-width: 900px) 30rem, 100vw" />
+      </a>
+    </div>
+  </section>
+
+  <!-- Proxy + On the Road -->
+  <section class="section">
+    <div class="container two-up">
+      <article class="card" id="proxy">
+        <span class="badge"><Icon name="users" /></span>
+        <h2>Proxy for food pickup</h2>
+        <p>
+          If you can't get to the pantry yourself, you can designate someone to pick up food for
+          your family. Have them bring a signed note that says:
+        </p>
+        <blockquote>
+          “I authorize <em>(name)</em> to pick up food from the Athens County Food Pantry for me <em>(your name and birthdate)</em>.”
+        </blockquote>
+        <p>
+          If you haven't received food from us before, your proxy should know your name and
+          birthdate, and the names and birthdates of your family members. Ask for a proxy form,
+          fill it out and return it so we can keep it on file.
+        </p>
+      </article>
+
+      <article class="card" id="on-the-road">
+        <span class="badge"><Icon name="truck" /></span>
+        <h2>On the Road</h2>
+        <p>
+          The Athens County Food Pantry brings food to different locations to make pickups more
+          convenient for you. Check our events page to see where we'll be next.
+        </p>
+        <a class="btn" href="/events"><Icon name="calendar" size={18} /> See upcoming events</a>
+      </article>
+    </div>
+  </section>
+
+  <!-- Resources -->
+  <section class="section section--tint">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">More help</span>
+        <h2>Other food resources</h2>
+      </div>
+      <div class="grid">
+        <article class="card">
+          <h3>Find other pantries</h3>
+          <p>Search <a href="https://www.freshtrak.com/" target="_blank" rel="noopener">FreshTrak</a> by zip code to see other food pantries and resources in our area.</p>
+        </article>
+        <article class="card">
+          <h3>SNAP &amp; community action</h3>
+          <p>
+            Contact Hocking-Athens-Perry Community Action at <a href="tel:+17407674500">(740) 767-4500</a> for other pantries and food assistance, or
+            to see if you qualify for SNAP. The Athens County Job &amp; Family Services Center can help too.
+          </p>
+        </article>
+        <article class="card">
+          <h3>Free community meals</h3>
+          <p>Athens organizations work together to provide a free community meal Monday through Friday. <a href={site.phoneHref}>Call us</a> for locations and details.</p>
+        </article>
+        <article class="card">
+          <Image src={foodbankLogo} alt="SE Ohio Foodbank logo" class="fb-logo" width={200} />
+          <h3>SE Ohio Foodbank</h3>
+          <p>
+            Most of our food comes from the <a href="https://hapcap.org/seofb/" target="_blank" rel="noopener">Southeastern Ohio Food Bank</a>,
+            part of <a href="https://www.feedingamerica.org/" target="_blank" rel="noopener">Feeding America</a> and one of 12 members of the <a href="https://ohiofoodbanks.org/" target="_blank" rel="noopener">Ohio Association of Food Banks</a>.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .steps {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 2rem;
+    display: grid;
+    gap: 1.25rem;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
+  }
+  .step__num {
+    display: grid;
+    place-items: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 50%;
+    background: var(--green-700);
+    color: #fff;
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+  .urgent {
+    font-size: 1.05rem;
+  }
+  .note {
+    margin-top: 1.25rem;
+    color: var(--ink-soft);
+  }
+  .map {
+    position: relative;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    min-height: 26rem;
+    height: 100%;
+    background: var(--green-100);
+  }
+  .map iframe {
+    width: 100%;
+    height: 100%;
+    min-height: 26rem;
+    border: 0;
+  }
+  .map__btn {
+    position: absolute;
+    left: 1rem;
+    bottom: 1rem;
+    background: var(--paper);
+  }
+  .guidelines {
+    display: block;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 0.75rem;
+    box-shadow: var(--shadow);
+    max-width: 32rem;
+    justify-self: center;
+  }
+  .two-up {
+    display: grid;
+    gap: 1.25rem;
+  }
+  @media (min-width: 900px) {
+    .two-up {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  .two-up .card {
+    padding: clamp(1.5rem, 4vw, 2.25rem);
+  }
+  .two-up h2 {
+    font-size: 1.75rem;
+  }
+  .badge {
+    display: grid;
+    place-items: center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 0.9rem;
+    background: var(--green-100);
+    color: var(--green-700);
+    margin-bottom: 1rem;
+  }
+  blockquote {
+    margin: 0 0 1rem;
+    padding: 1rem 1.25rem;
+    background: var(--green-50);
+    border-left: 4px solid var(--green-500);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+  }
+  :global(.fb-logo) {
+    width: 9rem;
+    margin-bottom: 0.75rem;
+  }
+</style>
